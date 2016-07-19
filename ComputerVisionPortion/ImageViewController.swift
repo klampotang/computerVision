@@ -15,6 +15,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var tagsLabel: UILabel!
     @IBOutlet weak var promptButton: UIButton!
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction func buttonTouched(sender: AnyObject) {
         let picker = UIImagePickerController()
