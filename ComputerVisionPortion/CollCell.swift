@@ -14,5 +14,6 @@ var file: PFFile?
 
 class CollCell: UICollectionViewCell {
     @IBOutlet weak var imageViewCollView: PFImageView!
+    @IBOutlet weak var scoreCollCell: UILabel!
     
 }

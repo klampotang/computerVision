@@ -22,11 +22,14 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
     @IBOutlet weak var collectionView: UICollectionView!
     
     var cards: [PFObject]?
-    var pictures = [UIImage]()
+    var resultTuple = [(Int, Double, UIImage)]()
     var chosenPicResults : [String]?
-    var scores : [Double]?
+    var scores = [Double]()
     var plsImage:UIImage?
     var plsFile:PFFile?
+    var plsImage2:UIImage?
+    var plsFile2:PFFile?
+    var pictureIndexes = [Int]()
 
     @IBAction func buttonTouched(sender: AnyObject) {
         let picker = UIImagePickerController()
@@ -37,15 +40,13 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         
     }
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return pictures.count ?? 0
+        return pictureIndexes.count ?? 0
     }
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("CollViewCell", forIndexPath: indexPath) as! CollCell
         
-        let pic = plsImage
-        //cell.imageViewCollView.file = plsFile
-        //cell.imageViewCollView.loadInBackground()
-        cell.imageViewCollView.image = plsImage
+        cell.imageViewCollView.image = (resultTuple[pictureIndexes[indexPath.row]]).2
+        //cell.scoreCollCell.text = (resultTuple[pictureIndexes[indexPath.row]]).1
         return cell
     }
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
@@ -89,7 +90,7 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
             self.loadSimilarCards()
         }
     }
-    private func recognizeOthers(img: UIImage!)
+    private func recognizeOthers(img: UIImage!, index: Int)
     {
         //var returnArr : [String]?
         let size = CGSizeMake(320, 320 * img.size.height / img.size.width)
@@ -108,11 +109,11 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
                 print("Error: \(error)\n")
                 self.tagsLabel.text = "Sorry, there was an error recognizing other image."
             } else {
-                print(results![0].tags)
                 let returnArrOthers = results![0].tags
-                self.scoreLabel.text = "score: \(self.calculateScore(self.chosenPicResults!, tagsOther: returnArrOthers))"
-                
-                 //returnArr = results![0].tags
+                let score = self.calculateScore(self.chosenPicResults!, tagsOther: returnArrOthers, index: index)
+                (self.resultTuple[index]).1 = score
+                self.returnTop5()
+
             }
         }
         
@@ -122,7 +123,6 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
         super.viewDidLoad()
         collectionView.dataSource = self
         collectionView.delegate = self 
-        //loadSimilarCards()
         
     }
     func loadSimilarCards()
@@ -139,45 +139,31 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
             {
                 self.cards = cards
                 var gotPictures = [UIImage]()
-
+                for (index,card) in self.cards!.enumerate()
+                {
                 //Send each card to the algorithm
-                    let card = cards![0]
                     let imageFile = card["media"] as! PFFile
-                    print(card["media"])
-                    print(imageFile)
                     self.plsFile = imageFile
-                    self.getDataFromPFFile(imageFile)
-                
-                    
-                
-                //self.pictures = gotPictures
-                //Put the top 5 matches in a collection view
-                //print("Scores: \(self.scores)")
-                //print(self.pictures.count)
-                //self.collectionView.reloadData()
-                //print("Done")
+                    self.getDataFromPFFile(imageFile, index: index)
+                }
             }
         }
         
     }
-    func getDataFromPFFile(file: PFFile) {
+    func getDataFromPFFile(file: PFFile, index: Int) {
         
         file.getDataInBackgroundWithBlock({
             (imageData: NSData?, error: NSError?) -> Void in
             if (error == nil) {
-                self.plsImage = UIImage(data:imageData!)
-                //self.imageView.image = self.plsImage
-                //gotPictures.append(self.plsImage!)
-                self.recognizeOthers(self.plsImage) //Returns an array of tags for the "other"
-                //Return score based on how many tags match
-                //let score = self.calculateScore(self.chosenPicResults!, tagsOther: otherPicResultsTags)
-                //self.scores!.append(score)
-                //print(self.scores)
+                let dataImage = UIImage(data:imageData!)
+                self.plsImage = dataImage
+                self.resultTuple.append((index, 0, dataImage!)) //FIX
+                self.recognizeOthers(self.plsImage, index: index) //Returns an array of tags for the "other"
             }
         })
 
     }
-    func calculateScore(tags: [String], tagsOther: [String]) -> Double
+    func calculateScore(tags: [String], tagsOther: [String], index: Int) -> Double
     {
         var count = 0
         for tag in tags
@@ -191,6 +177,26 @@ class ImageViewController: UIViewController, UINavigationControllerDelegate, UII
             }
         }
         return (Double(count) / 20)
+    }
+    func returnTop5()
+    {
+
+        let sortedArr = resultTuple.sort({ $0.1 > $1.1 })
+        //Get top 5
+        if(sortedArr.count >= 27)
+        {
+            var indexArray = [Int]()
+            for(var i = 0; i < 5; i += 1)
+            {
+                print(sortedArr[i])
+                indexArray.append((sortedArr[i]).0)
+                
+            }
+            print("IndexArr: \(indexArray)")
+            self.pictureIndexes = indexArray
+            self.collectionView.reloadData()
+            
+        }
     }
     
 }
