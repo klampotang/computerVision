@@ -28,27 +28,42 @@
                                 </connections>
                             </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="RoG-fa-2N0">
-                                <rect key="frame" x="7" y="412" width="240" height="66"/>
+                                <rect key="frame" x="0.0" y="412" width="375" height="255"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="8mm-tB-JXf">
-                                    <size key="itemSize" width="48" height="50"/>
+                                    <size key="itemSize" width="76" height="77"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollViewCell" id="ft2-3P-3ZX">
-                                        <rect key="frame" x="0.0" y="8" width="48" height="50"/>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CollViewCell" id="ft2-3P-3ZX" customClass="CollCell" customModule="ComputerVisionPortion" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="76" height="77"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="48" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="76" height="77"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kqV-yO-Joq" customClass="PFImageView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="76" height="77"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                </imageView>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <connections>
+                                            <outlet property="imageViewCollView" destination="kqV-yO-Joq" id="xDk-v8-ePW"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KTi-3h-XT7">
+                                <rect key="frame" x="15" y="385" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFY-Jj-hIT">
-                                <rect key="frame" x="20" y="299" width="335" height="105"/>
+                                <rect key="frame" x="20" y="299" width="335" height="88"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -61,6 +76,7 @@
                         <outlet property="collectionView" destination="RoG-fa-2N0" id="oqh-H4-lzI"/>
                         <outlet property="imageView" destination="lwC-jG-oxL" id="5nA-Qa-dia"/>
                         <outlet property="promptButton" destination="sZM-ze-k7M" id="nix-aP-ULB"/>
+                        <outlet property="scoreLabel" destination="KTi-3h-XT7" id="JRt-0p-xjm"/>
                         <outlet property="tagsLabel" destination="aFY-Jj-hIT" id="CHS-zH-iqY"/>
                     </connections>
                 </viewController>

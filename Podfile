@@ -8,5 +8,7 @@ target 'ComputerVisionPortion' do
   # Pods for ComputerVisionPortion
 
 pod 'AFNetworking', '~> 2.0'
+pod 'Parse'
+pod 'ParseUI'
 
 end

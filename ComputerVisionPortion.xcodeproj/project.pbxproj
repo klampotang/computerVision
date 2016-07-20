@@ -14,6 +14,7 @@
 		88D8B58D1D3EA5D900B4020C /* ClarifaiClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 88D8B58B1D3EA5D900B4020C /* ClarifaiClient.m */; };
 		88D8B58E1D3EA5D900B4020C /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D8B58C1D3EA5D900B4020C /* Credentials.swift */; };
 		88D8B5901D3EA6AB00B4020C /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D8B58F1D3EA6AB00B4020C /* ImageViewController.swift */; };
+		88D8B5931D3ED8F400B4020C /* CollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88D8B5921D3ED8F400B4020C /* CollCell.swift */; };
 		DBCD40BB52261FDC97FD4943 /* Pods_ComputerVisionPortion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74D4F7973256EED911C149F3 /* Pods_ComputerVisionPortion.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +33,7 @@
 		88D8B58C1D3EA5D900B4020C /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		88D8B58F1D3EA6AB00B4020C /* ImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		88D8B5911D3EA71C00B4020C /* AFNetworking.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		88D8B5921D3ED8F400B4020C /* CollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollCell.swift; sourceTree = "<group>"; };
 		FA1629366035CAAC5DA9C3DF /* Pods-ComputerVisionPortion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComputerVisionPortion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ComputerVisionPortion/Pods-ComputerVisionPortion.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -96,6 +98,7 @@
 				88D8B5831D3EA4B100B4020C /* Info.plist */,
 				88D8B5891D3EA5D900B4020C /* ComputerVisionPortion-Bridging-Header.h */,
 				88D8B58F1D3EA6AB00B4020C /* ImageViewController.swift */,
+				88D8B5921D3ED8F400B4020C /* CollCell.swift */,
 			);
 			path = ComputerVisionPortion;
 			sourceTree = "<group>";
@@ -226,6 +229,7 @@
 				88D8B58D1D3EA5D900B4020C /* ClarifaiClient.m in Sources */,
 				88D8B58E1D3EA5D900B4020C /* Credentials.swift in Sources */,
 				88D8B5901D3EA6AB00B4020C /* ImageViewController.swift in Sources */,
+				88D8B5931D3ED8F400B4020C /* CollCell.swift in Sources */,
 				88D8B5781D3EA4B100B4020C /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
